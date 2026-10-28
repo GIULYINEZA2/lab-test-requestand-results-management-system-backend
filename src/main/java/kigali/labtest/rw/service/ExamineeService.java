@@ -58,4 +58,10 @@ public class ExamineeService {
         }
         return false; // it returning false iyo record itari found
     }
+
+    // B1 iyi iFinding examinees by last name ignoring case sorted alphabetically by
+    // first name
+    public List<Examinee> findByLastName(String lastName) {
+        return repo.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
+    }
 }

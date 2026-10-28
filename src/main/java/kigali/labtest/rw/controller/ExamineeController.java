@@ -57,4 +57,11 @@ public class ExamineeController {
         return ResponseEntity.ok("Examinee deleted successfully");
     }
 
+    // B1 HTTP Get iFinding examinees by matching their last name via a query
+    // parameter
+    @GetMapping("/by-last-name")
+    public ResponseEntity<List<Examinee>> findByLastName(@RequestParam String lastName) {
+        return ResponseEntity.ok(examineeService.findByLastName(lastName));
+    }
+
 }
