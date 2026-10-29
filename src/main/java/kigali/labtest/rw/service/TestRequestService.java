@@ -20,10 +20,23 @@ public class TestRequestService {
     private TestRequestRepository repo;
 
     // i savinga a new test request record
+    // A2 + D1
     public String save(TestRequest testRequest) {
-        repo.save(testRequest);
-        return "Test request saved successfullly";
+        if (testRequest.getRequestDate().isBefore(LocalDate.now())) {
+            return "Test request date cannot be in the past";
+        }
 
+        boolean hasConflict = repo.existsByTechnicianAndRequestDateAndStatusNot(
+                testRequest.getTechnician(),
+                testRequest.getRequestDate(),
+                RequestStatus.REJECTED);
+        if (hasConflict) {
+            return "Technician already has a test request on that date";
+        }
+
+        testRequest.setStatus(RequestStatus.REQUESTED);
+        repo.save(testRequest);
+        return "Test request saved successfully";
     }
 
     // iyi i fetchinga ama test requests yose from the database
@@ -108,4 +121,5 @@ public class TestRequestService {
         return " Test request status updated successfully";
 
     }
+
 }

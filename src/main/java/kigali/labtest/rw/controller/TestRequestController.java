@@ -31,11 +31,17 @@ public class TestRequestController {
     private TestRequestService testRequestService;
 
     // Http post nawe i creates and saves a new test request record
+    // A2 + D1
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody TestRequest testRequest) {
         String message = testRequestService.save(testRequest);
+        if (message.contains("past")) {
+            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        }
+        if (message.contains("already has")) {
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+        }
         return new ResponseEntity<>(message, HttpStatus.CREATED);
-
     }
 
     // Http get i fetchinga a list ya all test requests
