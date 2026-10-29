@@ -52,4 +52,8 @@ public class LabSectionService {
         return false;
     }
 
+    // C3 kureba Lab sections nobody holds
+    public List<LabSection> findUnused() {
+        return repo.findUnused();
+    }
 }

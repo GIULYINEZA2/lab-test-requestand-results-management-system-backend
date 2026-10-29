@@ -71,4 +71,11 @@ public class LabSectionController {
         return ResponseEntity.ok("Lab section deleted successful");
     }
 
+    // c3 kureba ama Lab sections nobody holds
+
+    @GetMapping("/unused")
+    public ResponseEntity<List<LabSection>> findUnused() {
+        return ResponseEntity.ok(labSectionService.findUnused());
+    }
+
 }
