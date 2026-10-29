@@ -73,4 +73,39 @@ public class TestRequestService {
     public List<TestRequest> findBetween(LocalDate start, LocalDate end) {
         return repo.findByRequestDateBetweenOrderByRequestDateAsc(start, end);
     }
+
+    // D2 kureba Status flow
+
+    public String updateStatus(UUID id, RequestStatus newStatus) {
+        Optional<TestRequest> optionalRequest = repo.findById(id);
+        if (!optionalRequest.isPresent()) {
+            return "Thr test request witht that id does not exist";
+
+        }
+
+        TestRequest testRequest = optionalRequest.get();
+        RequestStatus current = testRequest.getStatus();
+
+        boolean isAllowed = false;
+
+        if (current == RequestStatus.REQUESTED
+                && (newStatus == RequestStatus.SAMPLED || newStatus == RequestStatus.REJECTED)) {
+            isAllowed = true;
+
+        }
+        if (current == RequestStatus.SAMPLED
+                && (newStatus == RequestStatus.PROCESSED || newStatus == RequestStatus.REJECTED)) {
+            isAllowed = true;
+        }
+
+        if (!isAllowed) {
+            return "Can not change status from " + current + "to" + newStatus;
+
+        }
+
+        testRequest.setStatus(newStatus);
+        repo.save(testRequest);
+        return " Test request status updated successfully";
+
+    }
 }
