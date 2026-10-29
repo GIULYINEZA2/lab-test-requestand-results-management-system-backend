@@ -1,8 +1,7 @@
 package kigali.labtest.rw.controller;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.web.PageableDefault;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.Optional;
@@ -80,5 +81,14 @@ public class TestRequestController {
     @GetMapping("/by-status")
     public ResponseEntity<List<TestRequest>> findByStatus(@RequestParam RequestStatus status) {
         return ResponseEntity.ok(testRequestService.findByStatus(status));
+    }
+
+    // B3 Test requests in a date range
+
+    @GetMapping("/between")
+    public ResponseEntity<List<TestRequest>> findBetween(@RequestParam String start, @RequestParam String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        return ResponseEntity.ok(testRequestService.findBetween(startDate, endDate));
     }
 }

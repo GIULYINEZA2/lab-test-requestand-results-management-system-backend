@@ -2,8 +2,11 @@ package kigali.labtest.rw.service;
 
 import java.util.Optional;
 
+import org.aspectj.weaver.ast.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,8 +64,13 @@ public class TestRequestService {
         return false;
     }
 
-    // B2
+    // B2 Test requests by status
     public List<TestRequest> findByStatus(RequestStatus status) {
         return repo.findByStatusOrderByRequestDateAsc(status);
+    }
+
+    // B3 Test requests in a date range
+    public List<TestRequest> findBetween(LocalDate start, LocalDate end) {
+        return repo.findByRequestDateBetweenOrderByRequestDateAsc(start, end);
     }
 }
