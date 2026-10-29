@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import kigali.labtest.rw.domain.Technician;
 import kigali.labtest.rw.repository.TechnicianRepository;
+import kigali.labtest.rw.repository.WorkstationRepository;
+import kigali.labtest.rw.domain.Workstation;
+
 import java.util.UUID;
 import java.util.Optional;
 import java.util.List;
@@ -63,4 +66,39 @@ public class TechnicianService {
     public List<Technician> findByLabSectionName(String name) {
         return repo.findByLabSectionName(name);
     }
+
+    @Autowired
+    private WorkstationRepository workstationRepo;
+
+    // D4 Move a technician to another workstation
+
+    public String changeWorkstation(UUID technicianId, int workstationNumber) {
+        Optional<Technician> techOpt = repo.findById(technicianId);
+        if (!techOpt.isPresent()) {
+            return "The technician with that id does not exist";
+
+        }
+        Optional<Workstation> wsOpt = workstationRepo.findByWorkstationNumber(workstationNumber);
+        if (!wsOpt.isPresent()) {
+            return "The workstation with that workstationNumber does not exist";
+
+        }
+
+        Technician technician = techOpt.get();
+        Workstation target = wsOpt.get();
+
+        if (repo.existsByWorkstation(target)) {
+            Workstation current = technician.getWorkstation();
+            if (current == null || !target.getId().equals(current.getId())) {
+                return "That workstation is taken by another technician";
+
+            }
+        }
+
+        technician.setWorkstation(target);
+        repo.save(technician);
+        return "Workstation changed successfully";
+
+    }
+
 }

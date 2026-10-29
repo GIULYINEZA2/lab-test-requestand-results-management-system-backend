@@ -1,6 +1,8 @@
 package kigali.labtest.rw.repository;
 
 import kigali.labtest.rw.domain.Technician;
+import kigali.labtest.rw.domain.Workstation;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;
@@ -13,4 +15,8 @@ public interface TechnicianRepository extends JpaRepository<Technician, UUID> {
     // C1 kureba Technicians by lab section
     @Query("SELECT DISTINCT t FROM Technician t JOIN t.labSections ls WHERE LOWER(ls.name) = LOWER(?1)")
     List<Technician> findByLabSectionName(String name);
+
+    // c4 ku Moving umu technician to another workstation
+
+    boolean existsByWorkstation(Workstation workstation);
 }
