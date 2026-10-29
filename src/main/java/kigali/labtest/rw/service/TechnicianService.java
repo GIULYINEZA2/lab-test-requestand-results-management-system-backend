@@ -57,4 +57,10 @@ public class TechnicianService {
         }
         return false;
     }
+
+    // C1 HANO kureba Technicians by lab section
+
+    public List<Technician> findByLabSectionName(String name) {
+        return repo.findByLabSectionName(name);
+    }
 }

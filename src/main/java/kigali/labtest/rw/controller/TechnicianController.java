@@ -72,4 +72,9 @@ public class TechnicianController {
 
     }
 
+    // c1 kureba aba Technicians by lab section
+    @GetMapping("/by-lab-section")
+    public ResponseEntity<List<Technician>> findByLabSection(@RequestParam String name) {
+        return ResponseEntity.ok(technicianService.findByLabSectionName(name));
+    }
 }
