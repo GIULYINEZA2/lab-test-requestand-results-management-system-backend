@@ -20,12 +20,13 @@ import java.util.Optional;
 import kigali.labtest.rw.domain.TestRequest;
 import kigali.labtest.rw.service.TestRequestService;
 
-@RestController
-@RequestMapping("/api/test-requests")
+@RestController // Iyi mArks this class nka Rest api controller
+@RequestMapping("/api/test-requests") // iyi nayo ni base url for all test request endpoints
 public class TestRequestController {
-    @Autowired
+    @Autowired // injects the TestRequestService bean
     private TestRequestService testRequestService;
 
+    // Http post nawe i creates and saves a new test request record
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody TestRequest testRequest) {
         String message = testRequestService.save(testRequest);
@@ -33,13 +34,15 @@ public class TestRequestController {
 
     }
 
+    // Http get i fetchinga a list ya all test requests
     @GetMapping("/all")
     public ResponseEntity<List<TestRequest>> findAll() {
         return ResponseEntity.ok(testRequestService.findAll());
 
     }
 
-    @GetMapping(".{id}")
+    // Http get here i fetchinga a spcific test request by its ID
+    @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable UUID id) {
         Optional<TestRequest> optionalRequest = testRequestService.findById(id);
         if (!optionalRequest.isPresent()) {
@@ -50,6 +53,7 @@ public class TestRequestController {
 
     }
 
+    // Http put nayo updates an existing test request's data by ID
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody TestRequest data) {
         Optional<TestRequest> optionalRequest = testRequestService.update(id, data);
@@ -60,6 +64,7 @@ public class TestRequestController {
 
     }
 
+    // Http delete niyo gusiga or removes a test request from the databse by Id
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable UUID id) {
         if (!testRequestService.delete(id)) {
