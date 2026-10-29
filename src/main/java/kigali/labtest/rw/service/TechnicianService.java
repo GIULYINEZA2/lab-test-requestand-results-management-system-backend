@@ -5,10 +5,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kigali.labtest.rw.controller.TechnicianController;
+import kigali.labtest.rw.domain.LabSection;
 import kigali.labtest.rw.domain.Technician;
+import kigali.labtest.rw.repository.LabSectionRepository;
 import kigali.labtest.rw.repository.TechnicianRepository;
 import kigali.labtest.rw.repository.WorkstationRepository;
 import kigali.labtest.rw.domain.Workstation;
+import kigali.labtest.rw.controller.TechnicianController;
 
 import java.util.UUID;
 import java.util.Optional;
@@ -16,6 +20,7 @@ import java.util.List;
 
 @Service // iyi marks this class as a Service component
 public class TechnicianService {
+
     @Autowired // Injects database repository
     private TechnicianRepository repo;
 
@@ -101,4 +106,35 @@ public class TechnicianService {
 
     }
 
+    // D3 gushyira one lab section to a technician
+
+    @Autowired
+    private LabSectionRepository labSectionRepo;
+
+    public String addlabSection(UUID technicianId, UUID labSectionId) {
+        Optional<Technician> techOpt = repo.findById(technicianId);
+        if (!techOpt.isPresent()) {
+            return "The technician with that id does not exist";
+        }
+
+        Optional<LabSection> sectionOpt = labSectionRepo.findById(labSectionId);
+        if (!sectionOpt.isPresent()) {
+            return "That lab section does not exist";
+
+        }
+
+        Technician technician = techOpt.get();
+        LabSection labSection = sectionOpt.get();
+
+        for (LabSection existing : technician.getLabSections()) {
+            if (existing.getId().equals(labSection.getId())) {
+                return "The technician already has that lab section";
+
+            }
+        }
+        technician.getLabSections().add(labSection);
+        repo.save(technician);
+        return "Lab section added to the technixian";
+
+    }
 }

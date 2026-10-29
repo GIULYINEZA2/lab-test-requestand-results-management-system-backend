@@ -94,4 +94,21 @@ public class TechnicianController {
         return ResponseEntity.ok(message);
     }
 
+    // D3 kw'Adding one lab section to a technician
+    @PutMapping("/{technician}/lab-sections/{labSectionId}")
+    public ResponseEntity<String> addLabSection(@PathVariable UUID technicianId, @PathVariable UUID labSectionId) {
+        String message = technicianService.addlabSection(technicianId, labSectionId);
+        if (message.contains("does not exist")) {
+
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+
+        }
+
+        if (message.contains("already has")) {
+            return new ResponseEntity<>(message, HttpStatus.CONFLICT);
+
+        }
+        return ResponseEntity.ok(message);
+
+    }
 }
