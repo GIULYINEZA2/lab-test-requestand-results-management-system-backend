@@ -73,4 +73,10 @@ public class WorkstationController {
         return ResponseEntity.ok(" workstation deleted successfully");
     }
 
+    // C2 Free workstations
+
+    @GetMapping("/free")
+    public ResponseEntity<List<Workstation>> findFree() {
+        return ResponseEntity.ok(workstationService.findFree());
+    }
 }

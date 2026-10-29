@@ -51,4 +51,9 @@ public class WorkstationService {
         }
         return false;
     }
+
+    // C2 C2 Free workstations
+    public List<Workstation> findFree() {
+        return repo.findFree();
+    }
 }
