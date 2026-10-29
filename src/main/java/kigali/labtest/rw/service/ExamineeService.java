@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kigali.labtest.rw.domain.Examinee;
 import kigali.labtest.rw.repository.ExamineeRepository;
+import kigali.labtest.rw.repository.TechnicianRepository;
+
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +66,18 @@ public class ExamineeService {
     public List<Examinee> findByLastName(String lastName) {
         return repo.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
     }
+
+    @Autowired
+    private TechnicianRepository technicianRepo;
+
+    // C4 KUREBA Examinees of a technician
+    public List<Examinee> findByTechnicianId(UUID technicianId) {
+        return repo.findByTechnicianId(technicianId);
+
+    }
+
+    public boolean technicianExists(UUID technicianId) {
+        return technicianRepo.existsById(technicianId);
+    }
+
 }

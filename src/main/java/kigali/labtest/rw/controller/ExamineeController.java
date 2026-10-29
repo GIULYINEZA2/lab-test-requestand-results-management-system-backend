@@ -64,4 +64,14 @@ public class ExamineeController {
         return ResponseEntity.ok(examineeService.findByLastName(lastName));
     }
 
+    // C4 KUREBA Examinees of a technician
+
+    @GetMapping("/of-technician/{technicianId}")
+    public ResponseEntity<?> findByTechnician(@PathVariable UUID technicianId) {
+        if (!examineeService.technicianExists(technicianId)) {
+            return new ResponseEntity<>("The technician with that id does not exist", HttpStatus.NOT_FOUND);
+
+        }
+        return ResponseEntity.ok(examineeService.findByTechnicianId(technicianId));
+    }
 }
