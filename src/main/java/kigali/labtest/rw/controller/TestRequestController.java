@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.UUID;
 import java.util.Optional;
 
+import kigali.labtest.rw.domain.RequestStatus;
 import kigali.labtest.rw.domain.TestRequest;
 import kigali.labtest.rw.service.TestRequestService;
 
@@ -74,4 +76,9 @@ public class TestRequestController {
         return ResponseEntity.ok("Test request deleted successfully");
     }
 
+    // B2 Test requests by status
+    @GetMapping("/by-status")
+    public ResponseEntity<List<TestRequest>> findByStatus(@RequestParam RequestStatus status) {
+        return ResponseEntity.ok(testRequestService.findByStatus(status));
+    }
 }

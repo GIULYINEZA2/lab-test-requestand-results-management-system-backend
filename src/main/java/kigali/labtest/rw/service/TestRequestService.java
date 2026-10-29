@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+import kigali.labtest.rw.domain.RequestStatus;
 import kigali.labtest.rw.domain.TestRequest;
 import kigali.labtest.rw.repository.TestRequestRepository;
 
@@ -58,5 +59,10 @@ public class TestRequestService {
         }
 
         return false;
+    }
+
+    // B2
+    public List<TestRequest> findByStatus(RequestStatus status) {
+        return repo.findByStatusOrderByRequestDateAsc(status);
     }
 }
