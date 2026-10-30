@@ -129,4 +129,10 @@ public class TestRequestController {
 
     }
 
+    // F1
+    @GetMapping("/stats/by-status")
+    public ResponseEntity<List<Object[]>> statsByStatus() {
+        return ResponseEntity.ok(testRequestService.countByStatus());
+    }
+
 }

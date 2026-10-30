@@ -3,6 +3,8 @@ package kigali.labtest.rw.repository;
 import kigali.labtest.rw.domain.RequestStatus;
 import kigali.labtest.rw.domain.TestRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.UUID;
 import java.time.LocalDate;
 import java.util.List;
@@ -21,4 +23,8 @@ public interface TestRequestRepository extends JpaRepository<TestRequest, UUID> 
 
     boolean existsByTechnicianAndRequestDateAndStatusNot(Technician technician, LocalDate requestDate,
             RequestStatus status);
+
+    // F1: JPQL
+    @Query("SELECT tr.status, COUNT(tr) FROM TestRequest tr GROUP BY tr.status")
+    List<Object[]> statsByStatus();
 }

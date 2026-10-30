@@ -122,4 +122,9 @@ public class TestRequestService {
 
     }
 
+    // F1
+    public List<Object[]> countByStatus() {
+        return repo.statsByStatus();
+    }
+
 }
