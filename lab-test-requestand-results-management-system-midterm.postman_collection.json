@@ -385,7 +385,7 @@
       "response": []
     },
     {
-      "name": "D1 Test Request Double-Booking Conflict",
+      "name": "D1 - save (201, then 409 on second send)",
       "request": {
         "method": "POST",
         "header": [],
@@ -415,7 +415,7 @@
       "response": []
     },
     {
-      "name": "D1 (Alternate) Past Date Validation Check",
+      "name": "D1 - past date (400)",
       "request": {
         "method": "POST",
         "header": [],
@@ -758,6 +758,142 @@
             "api",
             "lab-sections",
             "00000000-0000-0000-0000-000000000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2 - valid move (200)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/65703dc2-c1f7-46a1-91eb-2e9181997169/status?status=SAMPLED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "65703dc2-c1f7-46a1-91eb-2e9181997169",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "SAMPLED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C4 - unknown technician (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/examinees/of-technician/00000000-0000-0000-0000-000000000000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "examinees",
+            "of-technician",
+            "00000000-0000-0000-0000-000000000000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 - workstation taken (409)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/technicians/8745a87f-7532-4abb-9efe-6b5c842852a2/workstation?workstationNumber=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "technicians",
+            "8745a87f-7532-4abb-9efe-6b5c842852a2",
+            "workstation"
+          ],
+          "query": [
+            {
+              "key": "workstationNumber",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1 - not PROCESSED (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"testName\": \"Malaria RDT\",\r\n  \"interpretation\": \"Negative\",\r\n  \"resultValue\": 0\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/test-results/save?testRequestId=65703dc2-c1f7-46a1-91eb-2e9181997169",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-results",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "testRequestId",
+              "value": "65703dc2-c1f7-46a1-91eb-2e9181997169"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3 - protected (409)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/delete/003e4aab-1c13-474b-8c69-7ee76c5ab4de",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "delete",
+            "003e4aab-1c13-474b-8c69-7ee76c5ab4de"
           ]
         }
       },
