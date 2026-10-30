@@ -8,7 +8,7 @@
   },
   "item": [
     {
-      "name": "A1. Save Lab Sections",
+      "name": "Seed - Save Lab Sections",
       "request": {
         "method": "POST",
         "header": [],
@@ -38,7 +38,7 @@
       "response": []
     },
     {
-      "name": "A2.Save Workstations",
+      "name": "Seed - Save Workstations",
       "request": {
         "method": "POST",
         "header": [],
@@ -68,7 +68,7 @@
       "response": []
     },
     {
-      "name": "A3. Save Technicians",
+      "name": "Seed - Save Technicians",
       "request": {
         "method": "POST",
         "header": [],
@@ -149,7 +149,7 @@
       "response": []
     },
     {
-      "name": "A4. Save Examinees",
+      "name": "Seed - Save Examinees",
       "request": {
         "method": "POST",
         "header": [],
@@ -179,7 +179,7 @@
       "response": []
     },
     {
-      "name": "A5. Save Test Requests",
+      "name": "Seed - Save Test Requests",
       "request": {
         "method": "POST",
         "header": [],
@@ -716,6 +716,48 @@
             "657229e3-7586-4c9f-b292-b3f9db6cb4b1",
             "lab-sections",
             "8af7a80d-895c-49f2-a78b-418b3086fd23"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/lab-sections/all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "lab-sections",
+            "all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2 - get unknown id (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/lab-sections/00000000-0000-0000-0000-000000000000",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "lab-sections",
+            "00000000-0000-0000-0000-000000000000"
           ]
         }
       },
