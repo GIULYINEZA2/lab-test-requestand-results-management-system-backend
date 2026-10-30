@@ -135,4 +135,10 @@ public class TestRequestController {
         return ResponseEntity.ok(testRequestService.countByStatus());
     }
 
+    // F2
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<String> cancelDay(@RequestParam UUID technicianId, @RequestParam String date) {
+        LocalDate parsedDate = LocalDate.parse(date);
+        return ResponseEntity.ok(testRequestService.cancelDay(technicianId, parsedDate));
+    }
 }

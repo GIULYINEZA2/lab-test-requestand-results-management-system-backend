@@ -3,6 +3,7 @@ package kigali.labtest.rw.repository;
 import kigali.labtest.rw.domain.RequestStatus;
 import kigali.labtest.rw.domain.TestRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.UUID;
@@ -27,4 +28,10 @@ public interface TestRequestRepository extends JpaRepository<TestRequest, UUID> 
     // F1: JPQL
     @Query("SELECT tr.status, COUNT(tr) FROM TestRequest tr GROUP BY tr.status")
     List<Object[]> statsByStatus();
+
+    // F2: JPQL UPDATE
+    @Modifying
+    @Query("UPDATE TestRequest tr SET tr.status = ?1 " +
+            "WHERE tr.technician.id = ?2 AND tr.requestDate = ?3 AND tr.status != ?4")
+    int cancelDay(RequestStatus rejectedStatus, UUID technicianId, LocalDate date, RequestStatus processedStatus);
 }
