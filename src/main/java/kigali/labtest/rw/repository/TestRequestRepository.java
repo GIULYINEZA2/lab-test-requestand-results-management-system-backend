@@ -34,4 +34,9 @@ public interface TestRequestRepository extends JpaRepository<TestRequest, UUID> 
     @Query("UPDATE TestRequest tr SET tr.status = ?1 " +
             "WHERE tr.technician.id = ?2 AND tr.requestDate = ?3 AND tr.status != ?4")
     int cancelDay(RequestStatus rejectedStatus, UUID technicianId, LocalDate date, RequestStatus processedStatus);
+
+    // Bonus: DERIVED countBy
+    long countByStatus(RequestStatus status);
+
+    long countByRequestDate(LocalDate requestDate);
 }

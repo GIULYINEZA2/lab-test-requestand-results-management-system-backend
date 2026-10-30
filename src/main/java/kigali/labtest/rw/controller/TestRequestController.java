@@ -1,7 +1,7 @@
 package kigali.labtest.rw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -140,5 +144,21 @@ public class TestRequestController {
     public ResponseEntity<String> cancelDay(@RequestParam UUID technicianId, @RequestParam String date) {
         LocalDate parsedDate = LocalDate.parse(date);
         return ResponseEntity.ok(testRequestService.cancelDay(technicianId, parsedDate));
+    }
+
+    // Bonus: pagination, e.g. ?page=0&size=5&sort=requestDate,desc
+    @GetMapping("/page")
+    public ResponseEntity<Page<TestRequest>> page(@RequestParam int page, @RequestParam int size,
+            @RequestParam String sort) {
+        String[] parts = sort.split(",");
+        String propertyName = parts[0];
+
+        Sort.Direction direction = Sort.Direction.ASC;
+        if (parts.length > 1 && parts[1].equalsIgnoreCase("desc")) {
+            direction = Sort.Direction.DESC;
+        }
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, propertyName));
+        return ResponseEntity.ok(testRequestService.findPage(pageable));
     }
 }
