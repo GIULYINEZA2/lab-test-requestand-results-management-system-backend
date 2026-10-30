@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/test-results")
@@ -26,5 +27,11 @@ public class TestResultController {
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(message, HttpStatus.CREATED);
+    }
+
+    // E2
+    @GetMapping("/examinee/{hospitalNumber}")
+    public ResponseEntity<List<TestResult>> findByExaminee(@PathVariable String hospitalNumber) {
+        return ResponseEntity.ok(testResultService.findByExamineeHospitalNumber(hospitalNumber));
     }
 }

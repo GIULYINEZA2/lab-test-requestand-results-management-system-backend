@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 @Service
 public class TestResultService {
@@ -36,5 +37,10 @@ public class TestResultService {
         result.setTestRequest(testRequest);
         repo.save(result);
         return "Test result saved successfully";
+    }
+
+    // E2
+    public List<TestResult> findByExamineeHospitalNumber(String hospitalNumber) {
+        return repo.findByExamineeHospitalNumber(hospitalNumber);
     }
 }
