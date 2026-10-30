@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/test-results")
@@ -33,5 +34,16 @@ public class TestResultController {
     @GetMapping("/examinee/{hospitalNumber}")
     public ResponseEntity<List<TestResult>> findByExaminee(@PathVariable String hospitalNumber) {
         return ResponseEntity.ok(testResultService.findByExamineeHospitalNumber(hospitalNumber));
+    }
+
+    // E3
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable UUID id) {
+        Optional<TestResult> optionalResult = testResultService.findById(id);
+        if (!optionalResult.isPresent()) {
+            return new ResponseEntity<>("The test result with that id does not exist", HttpStatus.NOT_FOUND);
+        }
+        testResultService.delete(id);
+        return ResponseEntity.ok("Test result deleted successfully");
     }
 }

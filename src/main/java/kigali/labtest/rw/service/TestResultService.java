@@ -43,4 +43,21 @@ public class TestResultService {
     public List<TestResult> findByExamineeHospitalNumber(String hospitalNumber) {
         return repo.findByExamineeHospitalNumber(hospitalNumber);
     }
+
+    public Optional<TestResult> findById(UUID id) {
+        return repo.findById(id);
+    }
+
+    // E3
+    public boolean delete(UUID id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean existsByTestRequest(TestRequest testRequest) {
+        return repo.existsByTestRequest(testRequest);
+    }
 }

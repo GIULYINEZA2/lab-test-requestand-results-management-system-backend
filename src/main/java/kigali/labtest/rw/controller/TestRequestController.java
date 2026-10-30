@@ -23,6 +23,7 @@ import java.util.Optional;
 import kigali.labtest.rw.domain.RequestStatus;
 import kigali.labtest.rw.domain.TestRequest;
 import kigali.labtest.rw.service.TestRequestService;
+import kigali.labtest.rw.service.TestResultService;
 
 @RestController // Iyi mArks this class nka Rest api controller
 @RequestMapping("/api/test-requests") // iyi nayo ni base url for all test request endpoints
@@ -74,13 +75,23 @@ public class TestRequestController {
 
     }
 
+    @Autowired
+    private TestResultService testResultService;
+
     // Http delete niyo gusiga or removes a test request from the databse by Id
+    // A2 + E3
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable UUID id) {
-        if (!testRequestService.delete(id)) {
-            return new ResponseEntity<>("The test request with thta id is not there", HttpStatus.NOT_FOUND);
+        Optional<TestRequest> optionalRequest = testRequestService.findById(id);
+        if (!optionalRequest.isPresent()) {
+            return new ResponseEntity<>("The test request with that id does not exist", HttpStatus.NOT_FOUND);
         }
 
+        if (testResultService.existsByTestRequest(optionalRequest.get())) {
+            return new ResponseEntity<>("That test request has test results, delete them first", HttpStatus.CONFLICT);
+        }
+
+        testRequestService.delete(id);
         return ResponseEntity.ok("Test request deleted successfully");
     }
 
