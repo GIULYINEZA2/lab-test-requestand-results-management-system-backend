@@ -1,0 +1,725 @@
+{
+  "info": {
+    "_postman_id": "a975d9de-919a-4d28-9020-27cfadae0868",
+    "name": "lab-test-requestand-results-management-system-midterm",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48199467",
+    "_collection_link": "https://go.postman.co/collection/48199467-a975d9de-919a-4d28-9020-27cfadae0868?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "A1. Save Lab Sections",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Serology\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/lab-sections/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "lab-sections",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A2.Save Workstations",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"workstationNumber\": 4,\r\n  \"name\": \"Station 4\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/workstations/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "workstations",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A3. Save Technicians",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Irera\",\r\n  \"lastName\": \"Zachee\",\r\n  \"licenseNo\": \"LIC-1013\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/technicians/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "technicians",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3 Assign Lab Section",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/technicians/b817eb69-1599-4261-9dc0-2c7f654f9858/lab-sections/29d66ca4-d73e-49e5-91a1-383bac0cf702",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "technicians",
+            "b817eb69-1599-4261-9dc0-2c7f654f9858",
+            "lab-sections",
+            "29d66ca4-d73e-49e5-91a1-383bac0cf702"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 Assign Workstation",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/technicians/74569c8d-78b9-4b2f-9da9-bc0f4104e69f/workstation?workstationNumber=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "technicians",
+            "74569c8d-78b9-4b2f-9da9-bc0f4104e69f",
+            "workstation"
+          ],
+          "query": [
+            {
+              "key": "workstationNumber",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A4. Save Examinees",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Kalisa\",\r\n  \"lastName\": \"Irumva\",\r\n  \"hospitalNumber\": \"HN-20461\",\r\n  \"phone\": \"0799900459\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/examinees/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "examinees",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "A5. Save Test Requests",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"requestDate\": \"2026-11-20\",\r\n  \"status\": \"REQUESTED\",\r\n  \"clinicalNotes\": \"Electrolyte balance check\",\r\n  \"examinee\": { \"id\": \"d84eb83e-2d98-47fb-9521-850f6aff6207\" },\r\n  \"technician\": { \"id\": \"10f70025-9138-4e95-8f15-621d2c579570\" }\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B1 Find Examinees by Last Name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/examinees/by-last-name?lastName=uwimana",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "examinees",
+            "by-last-name"
+          ],
+          "query": [
+            {
+              "key": "lastName",
+              "value": "uwimana"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B2 Test Requests by Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/by-status?status=REQUESTED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "REQUESTED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "B3 Test Requests in Date Range",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/between?start=2026-10-01&end=2026-10-31",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-10-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-10-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C1 Technicians by Lab Section Name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/technicians/by-lab-section?name=hematology",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "technicians",
+            "by-lab-section"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "hematology"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C2 Free Workstations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/workstations/free",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "workstations",
+            "free"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C3 Lab Sections Nobody Holds",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/lab-sections/unused",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "lab-sections",
+            "unused"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "C4 Examinees of a Technician",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/examinees/of-technician/657229e3-7586-4c9f-b292-b3f9db6cb4b1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "examinees",
+            "of-technician",
+            "657229e3-7586-4c9f-b292-b3f9db6cb4b1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1 Test Request Double-Booking Conflict",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"requestDate\": \"2026-11-10\",\r\n  \"status\": \"REQUESTED\",\r\n  \"clinicalNotes\": \"Routine malaria test - First booking\",\r\n  \"examinee\": {\r\n    \"id\": \"cdc0cf5e-f56a-4eb0-827a-6ef87d778c3e\"\r\n  },\r\n  \"technician\": {\r\n    \"id\": \"8745a87f-7532-4abb-9efe-6b5c842852a2\"\r\n  }\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D1 (Alternate) Past Date Validation Check",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n  \"requestDate\": \"2026-05-12\",\r\n  \"clinicalNotes\": \"Double booking validation test.\",\r\n  \"examinee\": {\r\n    \"id\": \"385a891f-0c65-4889-942f-a69dfbf318a4\"\r\n  },\r\n  \"technician\": {\r\n    \"id\": \"657229e3-7586-4c9f-b292-b3f9db6cb4b1\"\r\n  }\r\n}\r\n  ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D2 Status Flow Validation Check",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/70d7ad55-7cee-4972-9ac9-3dfff6524e52/status?status=PROCESSED",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "70d7ad55-7cee-4972-9ac9-3dfff6524e52",
+            "status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "PROCESSED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E1. Save test result",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"testName\": \"Malaria RDT\",\r\n  \"interpretation\": \"Negative\",\r\n  \"resultValue\": 0\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/test-results/save?testRequestId=003e4aab-1c13-474b-8c69-7ee76c5ab4de",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-results",
+            "save"
+          ],
+          "query": [
+            {
+              "key": "testRequestId",
+              "value": "003e4aab-1c13-474b-8c69-7ee76c5ab4de"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D4 Move a technician to another workstation",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/technicians/b817eb69-1599-4261-9dc0-2c7f654f9858/workstation?workstationNumber=4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "technicians",
+            "b817eb69-1599-4261-9dc0-2c7f654f9858",
+            "workstation"
+          ],
+          "query": [
+            {
+              "key": "workstationNumber",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E2: test result history of an examinee",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/test-results/examinee/HN-20451",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-results",
+            "examinee",
+            "HN-20451"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "E3: delete a test result and protect test requests",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-results/delete/a85895b6-3b9a-43e0-bb2a-633963262659",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-results",
+            "delete",
+            "a85895b6-3b9a-43e0-bb2a-633963262659"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F1: test requests per status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/stats/by-status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "stats",
+            "by-status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "F2: cancel a technician's day",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/cancel-day?technicianId=10f70025-9138-4e95-8f15-621d2c579570&date=2026-10-20",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "technicianId",
+              "value": "10f70025-9138-4e95-8f15-621d2c579570"
+            },
+            {
+              "key": "date",
+              "value": "2026-10-20"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus: dashboard summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/dashboard/summary",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "dashboard",
+            "summary"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Bonus: test requests page by page",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test-requests/page?page=0&size=5&sort=requestDate,desc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test-requests",
+            "page"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "5"
+            },
+            {
+              "key": "sort",
+              "value": "requestDate,desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "D3 – Assign a lab section conflict",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/technicians/657229e3-7586-4c9f-b292-b3f9db6cb4b1/lab-sections/8af7a80d-895c-49f2-a78b-418b3086fd23",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "technicians",
+            "657229e3-7586-4c9f-b292-b3f9db6cb4b1",
+            "lab-sections",
+            "8af7a80d-895c-49f2-a78b-418b3086fd23"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
