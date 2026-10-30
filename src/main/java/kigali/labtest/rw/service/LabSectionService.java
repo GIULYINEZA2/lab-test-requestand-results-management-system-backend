@@ -18,7 +18,7 @@ public class LabSectionService {
     // i saving a new lab section muri database
     public String save(LabSection labSection) {
         repo.save(labSection);
-        return "Lab section save successfully";
+        return "Lab section saved successfully";
     }
 
     // Fetctches all lab sections from the databse

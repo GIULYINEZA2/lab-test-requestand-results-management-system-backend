@@ -22,7 +22,7 @@ public class Technician {
     private UUID id;
     private String firstName;
     private String lastName;
-    private String licenceNo;
+    private String licenseNo;
     @ManyToOne
     @JoinColumn(name = "workstation_id")
     private Workstation workstation;
@@ -55,12 +55,12 @@ public class Technician {
         this.lastName = lastName;
     }
 
-    public String getLicenceNo() {
-        return licenceNo;
+    public String getLicenseNo() {
+        return licenseNo;
     }
 
-    public void setLicenceNo(String licenceNo) {
-        this.licenceNo = licenceNo;
+    public void setLicenseNo(String licenseNo) {
+        this.licenseNo = licenseNo;
     }
 
     public Workstation getWorkstation() {

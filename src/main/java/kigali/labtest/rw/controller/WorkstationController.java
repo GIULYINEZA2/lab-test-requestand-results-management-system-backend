@@ -27,7 +27,7 @@ public class WorkstationController {
     private WorkstationService workstationService;
 
     // HTTP POST: creating ika saving a new workstation
-    @PostMapping("save")
+    @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody Workstation workstation) {
         String message = workstationService.save(workstation);
         return new ResponseEntity<>(message, HttpStatus.CREATED);
@@ -35,7 +35,7 @@ public class WorkstationController {
     }
 
     // http get : i fetchinga all workstations
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity<List<Workstation>> findAll() {
         return ResponseEntity.ok(workstationService.findAll());
 

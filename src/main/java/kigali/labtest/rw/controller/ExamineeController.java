@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +47,16 @@ public class ExamineeController {
         }
         return ResponseEntity.ok(optionalExaminee.get());
 
+    }
+
+    // Http Put iyi i updating an existing examinee by ID
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody Examinee data) {
+        Optional<Examinee> optionalExaminee = examineeService.update(id, data);
+        if (!optionalExaminee.isPresent()) {
+            return new ResponseEntity<>("The examinee with that id does not exist", HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(optionalExaminee.get());
     }
 
     // Http Delete iyi i removing ikanasiba an examinee by ID

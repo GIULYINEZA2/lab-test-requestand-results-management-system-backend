@@ -5,14 +5,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kigali.labtest.rw.controller.TechnicianController;
 import kigali.labtest.rw.domain.LabSection;
 import kigali.labtest.rw.domain.Technician;
 import kigali.labtest.rw.repository.LabSectionRepository;
 import kigali.labtest.rw.repository.TechnicianRepository;
 import kigali.labtest.rw.repository.WorkstationRepository;
 import kigali.labtest.rw.domain.Workstation;
-import kigali.labtest.rw.controller.TechnicianController;
 
 import java.util.UUID;
 import java.util.Optional;
@@ -49,7 +47,7 @@ public class TechnicianService {
             Technician existing = optionalTechnician.get();
             existing.setFirstName(data.getFirstName());
             existing.setLastName(data.getLastName());
-            existing.setLicenceNo(data.getLicenceNo());
+            existing.setLicenseNo(data.getLicenseNo());
             existing.setWorkstation(data.getWorkstation());
             return Optional.of(repo.save(existing));
         }
@@ -134,7 +132,7 @@ public class TechnicianService {
         }
         technician.getLabSections().add(labSection);
         repo.save(technician);
-        return "Lab section added to the technixian";
+        return "Lab section added to the technician";
 
     }
 }

@@ -2,7 +2,6 @@ package kigali.labtest.rw.service;
 
 import java.util.Optional;
 
-import org.aspectj.weaver.ast.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -95,7 +94,7 @@ public class TestRequestService {
     public String updateStatus(UUID id, RequestStatus newStatus) {
         Optional<TestRequest> optionalRequest = repo.findById(id);
         if (!optionalRequest.isPresent()) {
-            return "Thr test request witht that id does not exist";
+            return "The test request with that id does not exist";
 
         }
 
@@ -115,13 +114,13 @@ public class TestRequestService {
         }
 
         if (!isAllowed) {
-            return "Can not change status from " + current + "to" + newStatus;
+            return "Cannot change status from " + current + " to " + newStatus;
 
         }
 
         testRequest.setStatus(newStatus);
         repo.save(testRequest);
-        return " Test request status updated successfully";
+        return "Test request status updated successfully";
 
     }
 
